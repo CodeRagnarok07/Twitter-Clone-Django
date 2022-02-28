@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitter clone</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-900 h-screen">
+    <div class="flex">
+
+
+        <!--left menu-->
+        <div class="w-2/5 text-white h-12 pl-16 py-4 h-auto">
+            {% include 'left_menu.html' %}
+        </div>
+        <!--left menu-->
+
+
+        <!-- pots -->
+        <div class="w-3/5 border border-gray-600 h-auto  border-t-0">
+            {% block content %}
+            
+            {% endblock content %}
+        </div>
+        <!-- pots -->
+
+
+
+        <!--right menu-->
+        <div class="w-2/5 h-12">
+            {% include 'right_menu.html' %}
+
+        </div>
+        <!--right menu-->
+
+    </div>
+
+
+</body>
+
+</html>
