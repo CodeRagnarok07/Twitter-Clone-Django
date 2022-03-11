@@ -40,6 +40,9 @@ INSTALLED_APPS = [
     'users',
 ]
 
+LOGIN_REDIRECT_URL = "login/"
+LOGOUT_REDIRECT_URL = 'login/'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -69,6 +72,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'settings.wsgi.application'
+
 
 
 # Database
