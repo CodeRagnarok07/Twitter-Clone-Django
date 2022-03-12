@@ -21,18 +21,18 @@
 
             <div class="-mt-16 mx-6">
                 <img class="inline-block rounded-full h-32"
-                    src="https://avatars.githubusercontent.com/u/79159146?v=4" alt="" />
+                    src="{{current_profile.image}}" alt="" />
             </div>
             <button
-                class="m-4 border  border-white px-6 rounded-full text-white font-semibold hover:bg-gray-700 text-semibold">Edit
-                profile</button>
+                class="m-4 border  border-white px-6 rounded-full text-white font-semibold hover:bg-gray-700 text-semibold">
+                Edit profile </button>
         </div>
         <div class="m-4 text-gray-500 font-medium">
-            <p class="text-white text-2xl font-semibold">name</p>
-            <p>@User</p>
-            <p class="text-white text-sm my-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt soluta
-                et nesciunt accusantium magnam rerum fugiat ea laboriosam maxime laudantium harum necessitatibus maiores
-                est nisi esse debitis consectetur, unde quasi!</p>
+            <p class="text-white text-2xl font-semibold">{{current_profile.user.first_name}}</p>
+            <p>@{{current_profile}}</p>
+            <p class="text-white text-sm my-4">
+                {{current_profile.bio}}
+            </p>
 
             <div class="flex space-x-6">
                 <h5>Venezuela</h5>
@@ -54,7 +54,7 @@
 
 <!--first tweet start-->
 <div>
-
+    {% for i in posts %}
     <div class="flex flex-shrink-0 p-4 pb-0">
         <a href="#" class="flex-shrink-0 group block">
             <div class="flex items-center">
@@ -64,24 +64,21 @@
                 </div>
                 <div class="ml-3">
                     <p class="text-base leading-6 font-medium text-white">
-                        Angel Riera
+                        {{i.profile.user.first_name}}
                         <span
                             class="text-sm leading-5 font-medium text-gray-400 group-hover:text-gray-300 transition ease-in-out duration-150">
-                            @Ragandroll . 16 April
+                            @{{i.profile.user}} {{i.timestamp}}
                         </span>
                     </p>
                 </div>
             </div>
         </a>
     </div>
+
+
     <div class="pl-16">
         <p class="text-base width-auto font-medium text-white flex-shrink">
-            Day 07 of the challenge <span class="text-blue-400">#100DaysOfCode</span>
-            I was wondering what I can do with <span class="text-blue-400">#tailwindcss</span>, so just started
-            building Twitter UI using Tailwind and so far it looks so promising. I will post my code after
-            completion.
-            [07/100]
-            <span class="text-blue-400"> #WomenWhoCode #CodeNewbie</span>
+            {{i.content}}
         </p>
 
 
@@ -162,6 +159,8 @@
 
     </div>
     <hr class="border-gray-600">
+    {% endfor %}
+
 </div>
 
 {% endblock content %}

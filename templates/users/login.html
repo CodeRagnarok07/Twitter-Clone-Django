@@ -27,7 +27,7 @@
 
                 <h1 class="text-white text-2xl">iniciar sesion en twitter</h1>
 
-                <form action="" method="post">
+                <form action="" method="post" id="login_form">
                     {% csrf_token %}
                     {{ form.as_p }}
                 <!-- <input class="w-full p-2 bg-gray-900 rounded-md  border border-gray-700 focus:border-blue-700"
@@ -47,7 +47,13 @@
 
     </div>
 
+<script>
+    const form_login = document.getElementById("login_form")
+    for(var field in form_login){
+        form_login[field].classList.add("w-full", "p-2", "bg-gray-900", "rounded-md",  "border", "border-gray-700", "focus:border-blue-700")
+    }
 
+</script>
 </body>
 
 </html>
