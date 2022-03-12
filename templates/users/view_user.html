@@ -1,11 +1,29 @@
 {% extends '../base.html' %}
 
 {% block content %}
+<div class="flex">
+    <div class="flex-1 m-2">
+        <h2 class="px-4 py-2 text-xl font-semibold text-white">Home</h2>
+    </div>
+    <div class="flex-1 px-4 py-2 m-2">
+        <a href=""
+            class=" text-2xl font-medium rounded-full text-white hover:bg-blue-800 hover:text-blue-300 float-right">
+            <svg class="m-2 h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                <g>
+                    <path
+                        d="M22.772 10.506l-5.618-2.192-2.16-6.5c-.102-.307-.39-.514-.712-.514s-.61.207-.712.513l-2.16 6.5-5.62 2.192c-.287.112-.477.39-.477.7s.19.585.478.698l5.62 2.192 2.16 6.5c.102.306.39.513.712.513s.61-.207.712-.513l2.16-6.5 5.62-2.192c.287-.112.477-.39.477-.7s-.19-.585-.478-.697zm-6.49 2.32c-.208.08-.37.25-.44.46l-1.56 4.695-1.56-4.693c-.07-.21-.23-.38-.438-.462l-4.155-1.62 4.154-1.622c.208-.08.37-.25.44-.462l1.56-4.693 1.56 4.694c.07.212.23.382.438.463l4.155 1.62-4.155 1.622zM6.663 3.812h-1.88V2.05c0-.414-.337-.75-.75-.75s-.75.336-.75.75v1.762H1.5c-.414 0-.75.336-.75.75s.336.75.75.75h1.782v1.762c0 .414.336.75.75.75s.75-.336.75-.75V5.312h1.88c.415 0 .75-.336.75-.75s-.335-.75-.75-.75zm2.535 15.622h-1.1v-1.016c0-.414-.335-.75-.75-.75s-.75.336-.75.75v1.016H5.57c-.414 0-.75.336-.75.75s.336.75.75.75H6.6v1.016c0 .414.335.75.75.75s.75-.336.75-.75v-1.016h1.098c.414 0 .75-.336.75-.75s-.336-.75-.75-.75z">
+                    </path>
+                </g>
+            </svg>
+        </a>
+    </div>
+</div>
 
+<hr class="border-gray-600">
 <div>
 
     <div class="flex overflow-hidden  ">
-        <div class="w-full h-full  h-48  ">
+        <div class="w-full h-52  ">
             <img class="w-full h-full object-cover  shadow"
                 src="https://www.batiburrillo.net/wp-content/uploads/2019/07/Ampliacio%CC%81n-de-imagen-en-li%CC%81nea-sin-perder-calidad.jpg.webp"
                 alt="" />
@@ -19,13 +37,17 @@
     <div class="flex flex-col">
         <div class="flex justify-between">
 
-            <div class="-mt-16 mx-6">
-                <img class="inline-block rounded-full h-32"
-                    src="{{current_profile.image}}" alt="" />
+            <div class="-mt-16 mx-6 h-32 w-32">
+                <img class="inline-block rounded-full object-cover w-full h-full" src="{{current_profile.image}}"
+                    alt="{{current_profile}}" />
             </div>
+
+            {% if request.user.profile == current_profile %}
             <button
                 class="m-4 border  border-white px-6 rounded-full text-white font-semibold hover:bg-gray-700 text-semibold">
-                Edit profile </button>
+                Edit profile
+            </button>
+            {% endif %}
         </div>
         <div class="m-4 text-gray-500 font-medium">
             <p class="text-white text-2xl font-semibold">{{current_profile.user.first_name}}</p>
@@ -35,14 +57,72 @@
             </p>
 
             <div class="flex space-x-6">
-                <h5>Venezuela</h5>
-                <h5>se unio el</h5>
+                <div class="flex">
+                    <svg class="mr-2 h-5 w-5 fill-gray-500" viewBox="0 0 24 24" aria-hidden="true">
+                        <g>
+                            <path
+                                d="M12 14.315c-2.088 0-3.787-1.698-3.787-3.786S9.913 6.74 12 6.74s3.787 1.7 3.787 3.787-1.7 3.785-3.787 3.785zm0-6.073c-1.26 0-2.287 1.026-2.287 2.287S10.74 12.814 12 12.814s2.287-1.025 2.287-2.286S13.26 8.24 12 8.24z">
+                            </path>
+                            <path
+                                d="M20.692 10.69C20.692 5.9 16.792 2 12 2s-8.692 3.9-8.692 8.69c0 1.902.603 3.708 1.743 5.223l.003-.002.007.015c1.628 2.07 6.278 5.757 6.475 5.912.138.11.302.163.465.163.163 0 .327-.053.465-.162.197-.155 4.847-3.84 6.475-5.912l.007-.014.002.002c1.14-1.516 1.742-3.32 1.742-5.223zM12 20.29c-1.224-.99-4.52-3.715-5.756-5.285-.94-1.25-1.436-2.742-1.436-4.312C4.808 6.727 8.035 3.5 12 3.5s7.192 3.226 7.192 7.19c0 1.57-.497 3.062-1.436 4.313-1.236 1.57-4.532 4.294-5.756 5.285z">
+                            </path>
+                        </g>
+                    </svg>
+                    Venezuela
+                </div>
+                <div class="flex">
+                    <svg class="mr-2 h-5 w-5 fill-gray-500" viewBox="0 0 24 24" aria-hidden="true">
+                        <g>
+                            <path
+                                d="M19.708 2H4.292C3.028 2 2 3.028 2 4.292v15.416C2 20.972 3.028 22 4.292 22h15.416C20.972 22 22 20.972 22 19.708V4.292C22 3.028 20.972 2 19.708 2zm.792 17.708c0 .437-.355.792-.792.792H4.292c-.437 0-.792-.355-.792-.792V6.418c0-.437.354-.79.79-.792h15.42c.436 0 .79.355.79.79V19.71z">
+                            </path>
+                            <circle cx="7.032" cy="8.75" r="1.285"></circle>
+                            <circle cx="7.032" cy="13.156" r="1.285"></circle>
+                            <circle cx="16.968" cy="8.75" r="1.285"></circle>
+                            <circle cx="16.968" cy="13.156" r="1.285"></circle>
+                            <circle cx="12" cy="8.75" r="1.285"></circle>
+                            <circle cx="12" cy="13.156" r="1.285"></circle>
+                            <circle cx="7.032" cy="17.486" r="1.285"></circle>
+                            <circle cx="12" cy="17.486" r="1.285"></circle>
+                        </g>
+                    </svg>
+                    Joined
+                </div>
             </div>
             <div class="flex space-x-6">
-                <h5><span class="text-white">00</span> Siguien</h5>
-                <h5> <span class="text-white">00</span> followers</h5>
+                <h5><span class="text-white">{{current_profile.following.count}}</span> Following</h5>
+                <h5> <span class="text-white">{{current_profile.follower.count}}</span> Followers</h5>
             </div>
+
+            {% if request.user.is_authenticated %}
+            <!-- Si el usuario esta autentificado -->
+            {% if current_profile != request.user.profile %}
+            <!-- si el perfil es diferente al usuario -->
+            {% if user not in request.user.profile.following %}
+            <div class="flex-1 px-4 py-2 m-2">
+                <a href="{% url 'follow' current_profile.id %}" class=" float-right">
+                    <button
+                        class="bg-transparent hover:bg-gray-500 text-white font-semibold hover:text-white py-2 px-4 border border-white hover:border-transparent rounded-full">
+                        follow
+                    </button>
+                </a>
+            </div>
+            {% else %}
+            <div class="flex-1 px-4 py-2 m-2">
+                <a href="{% url 'unfollow' current_profile.id %}" class=" float-right">
+                    <button
+                        class="bg-transparent hover:bg-gray-500 text-white font-semibold hover:text-white py-2 px-4 border border-white hover:border-transparent rounded-full">
+                        Unfollow
+                    </button>
+                </a>
+            </div>
+
+            {% endif %}
+            {% endif %}
+            {% endif %}
+
         </div>
+
 
 
     </div>
@@ -59,8 +139,7 @@
         <a href="#" class="flex-shrink-0 group block">
             <div class="flex items-center">
                 <div>
-                    <img class="inline-block h-10 w-10 rounded-full"
-                        src="https://avatars.githubusercontent.com/u/79159146?v=4" alt="" />
+                    <img class="inline-block h-10 w-10 rounded-full" src="{{ current_profile.image }}" alt="" />
                 </div>
                 <div class="ml-3">
                     <p class="text-base leading-6 font-medium text-white">

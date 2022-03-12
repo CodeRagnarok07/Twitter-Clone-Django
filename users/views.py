@@ -50,3 +50,24 @@ def register(request):
 
     context = {'form': form}
     return render(request, "users/register.html", context)
+
+
+# Follow user
+
+from .models import Relationship
+
+def follow_user(request, profile_id):                      
+	current_user = request.user.profile                    
+	to_user = Profile.objects.get(id=profile_id)   
+	to_user_id = to_user
+	rel = Relationship(from_user=current_user, to_user=to_user_id) 
+	rel.save()                                      
+	return redirect('home')
+
+def unfollow_user(request, profile_id):
+	current_user = request.user.profile
+	to_user = Profile.objects.get(id=profile_id)
+	to_user_id = to_user.id
+	rel = Relationship.objects.get(from_user=current_user.id, to_user=to_user_id)
+	rel.delete()
+	return redirect('home')

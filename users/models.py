@@ -26,9 +26,8 @@ class Profile(models.Model):
 
 
 class Relationship(models.Model):
-	# Deberia ser oneToMany por que se puede seguir todas las veces que se quiera
-	from_user = models.ForeignKey(User, related_name='relationships', on_delete=models.CASCADE) 
-	to_user = models.ForeignKey(User, related_name='related_to', on_delete=models.CASCADE)
+	from_user = models.ForeignKey(Profile, related_name='following', on_delete=models.CASCADE) 
+	to_user = models.ForeignKey(Profile, related_name='follower', on_delete=models.CASCADE)
 
 	def __str__(self):
 		return f'{self.from_user} to {self.to_user}'
