@@ -11,6 +11,6 @@ urlpatterns =[
     path("register/", views.register, name="register"),
     path("view_user/<str:profile>/", views.view_user, name="view_user"),
 
-    path('follow/<int:profile_id>', views.follow_user, name='follow'),
-    path('unfollow/<int:profile_id>', views.unfollow_user, name='unfollow')
+    path('follow/<int:user_id>', views.follow_user, name='follow'),
+    path('unfollow/<int:user_id>', views.unfollow_user, name='unfollow')
 ]

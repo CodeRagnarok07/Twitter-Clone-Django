@@ -2,7 +2,10 @@
 
 {% block content %}
 <div class="flex">
-    <div class="flex-1 m-2">
+    <div class="flex items-center m-2">
+        <a href="" class="hover:bg-gray-500 p-2 rounded-full mr-2">
+            <svg class="h-5 w-5 fill-gray-100" viewBox="0 0 24 24" aria-hidden="true" style="color: rgb(239, 243, 244);"><g><path d="M20 11H7.414l4.293-4.293c.39-.39.39-1.023 0-1.414s-1.023-.39-1.414 0l-6 6c-.39.39-.39 1.023 0 1.414l6 6c.195.195.45.293.707.293s.512-.098.707-.293c.39-.39.39-1.023 0-1.414L7.414 13H20c.553 0 1-.447 1-1s-.447-1-1-1z"></path></g></svg>
+        </a>
         <h2 class="px-4 py-2 text-xl font-semibold text-white">Home</h2>
     </div>
     <div class="flex-1 px-4 py-2 m-2">
@@ -23,11 +26,13 @@
 <div>
 
     <div class="flex overflow-hidden  ">
-        <div class="w-full h-52  ">
-            <img class="w-full h-full object-cover  shadow"
-                src="https://www.batiburrillo.net/wp-content/uploads/2019/07/Ampliacio%CC%81n-de-imagen-en-li%CC%81nea-sin-perder-calidad.jpg.webp"
+
+
+            <div class="w-full h-52  ">
+                <img class="w-full h-full object-cover  shadow"
+                src="{{ current_profile.image_header}}"
                 alt="" />
-        </div>
+            </div>
 
         <hr class="border-gray-600">
     </div>
@@ -47,6 +52,29 @@
                 class="m-4 border  border-white px-6 rounded-full text-white font-semibold hover:bg-gray-700 text-semibold">
                 Edit profile
             </button>
+            {% else %}
+            {% if request.user.is_authenticated %}
+            <!-- Si el usuario esta autentificado -->
+            {% if current_profile != request.user.profile %}
+            <!-- si el perfil es diferente al usuario -->
+            {% if current_profile.user not in request.user.profile.following %}
+            <button
+                class="m-4 border  border-white px-6 rounded-full text-white font-semibold hover:bg-gray-700 text-semibold">
+                <a href="{% url 'follow' current_profile.user.id %}">
+                    follow
+                </a>
+            </button>
+            {% else %}
+            <button
+                class="m-4 border  border-white px-6 rounded-full text-white font-semibold hover:bg-gray-700 text-semibold">
+                <a href="{% url 'unfollow' current_profile.user.id %}">
+                    Unfollow
+                </a>
+            </button>
+
+            {% endif %}
+            {% endif %}
+            {% endif %}
             {% endif %}
         </div>
         <div class="m-4 text-gray-500 font-medium">
@@ -91,35 +119,10 @@
             </div>
             <div class="flex space-x-6">
                 <h5><span class="text-white">{{current_profile.following.count}}</span> Following</h5>
-                <h5> <span class="text-white">{{current_profile.follower.count}}</span> Followers</h5>
+                <h5> <span class="text-white">{{current_profile.user.follower.count}}</span> Followers</h5>
             </div>
 
-            {% if request.user.is_authenticated %}
-            <!-- Si el usuario esta autentificado -->
-            {% if current_profile != request.user.profile %}
-            <!-- si el perfil es diferente al usuario -->
-            {% if user not in request.user.profile.following %}
-            <div class="flex-1 px-4 py-2 m-2">
-                <a href="{% url 'follow' current_profile.id %}" class=" float-right">
-                    <button
-                        class="bg-transparent hover:bg-gray-500 text-white font-semibold hover:text-white py-2 px-4 border border-white hover:border-transparent rounded-full">
-                        follow
-                    </button>
-                </a>
-            </div>
-            {% else %}
-            <div class="flex-1 px-4 py-2 m-2">
-                <a href="{% url 'unfollow' current_profile.id %}" class=" float-right">
-                    <button
-                        class="bg-transparent hover:bg-gray-500 text-white font-semibold hover:text-white py-2 px-4 border border-white hover:border-transparent rounded-full">
-                        Unfollow
-                    </button>
-                </a>
-            </div>
 
-            {% endif %}
-            {% endif %}
-            {% endif %}
 
         </div>
 

@@ -4,8 +4,8 @@ from django.contrib.auth import authenticate, login
 # Create your views here.
 
 from django.contrib import messages
-
-from .models import Profile, Post
+from django.contrib.auth.models import User
+from .models import Profile, Post, Relationship
 from .forms import UserRegisterForm, PostForm
 
 
@@ -54,20 +54,17 @@ def register(request):
 
 # Follow user
 
-from .models import Relationship
 
-def follow_user(request, profile_id):                      
-	current_user = request.user.profile                    
-	to_user = Profile.objects.get(id=profile_id)   
-	to_user_id = to_user
-	rel = Relationship(from_user=current_user, to_user=to_user_id) 
+def follow_user(request, user_id):                      
+	current_user = request.user            
+	to_user = User.objects.get(id=user_id)   
+	rel = Relationship(from_user=current_user, to_user=to_user) 
 	rel.save()                                      
 	return redirect('home')
 
-def unfollow_user(request, profile_id):
-	current_user = request.user.profile
-	to_user = Profile.objects.get(id=profile_id)
-	to_user_id = to_user.id
-	rel = Relationship.objects.get(from_user=current_user.id, to_user=to_user_id)
+def unfollow_user(request, user_id):
+	current_user = request.user
+	to_user = User.objects.get(id=user_id)
+	rel = Relationship.objects.get(from_user=current_user, to_user=to_user)
 	rel.delete()
 	return redirect('home')

@@ -154,19 +154,31 @@
             </a>
         </div>
 
-        {% if i in request.user.profile.following %}
 
+        {% if request.user.is_authenticated %}
+        <!-- Si el usuario esta autentificado -->
+            {% if i.user not in request.user.profile.following %}
+            <div class="flex-1 px-4 py-2 m-2">
+                <a href="{% url 'follow' i.user.id %}" class=" float-right">
+                    <button
+                        class="bg-transparent hover:bg-gray-500 text-white font-semibold hover:text-white py-2 px-4 border border-white hover:border-transparent rounded-full">
+                        follow
+                    </button>
+                </a>
+            </div>
+            {% else %}
+            <div class="flex-1 px-4 py-2 m-2">
+                <a href="{% url 'unfollow' i.user.id %}" class=" float-right">
+                    <button
+                        class="bg-transparent hover:bg-gray-500 text-white font-semibold hover:text-white py-2 px-4 border border-white hover:border-transparent rounded-full">
+                        Unfollow
+                    </button>
+                </a>
+            </div>
 
-        <div class="flex-1 px-4 py-2 m-2">
-            <a href="{% url 'follow' i.id %}" class=" float-right">
-                <button
-                    class="bg-transparent hover:bg-gray-500 text-white font-semibold hover:text-white py-2 px-4 border border-white hover:border-transparent rounded-full">
-                    Follow
-                </button>
-            </a>
-        </div>
-
+            {% endif %}
         {% endif %}
+
 
     </div>
     {% endif %}
