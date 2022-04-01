@@ -1,0 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* npx tailwindcss build ./static/css/main.css -o ./static/css/main.min.css --watch */

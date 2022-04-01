@@ -1,0 +1,29 @@
+{
+  "name": "twitter",
+  "version": "1.0.0",
+  "description": "- [x] registro de usuarios - [x] login de usuarios - [x] nuevos posts de usuarios - [x] user view - [ ] edicion de perfil [ bio y imagen] - [ ] login con correo",
+  "main": "index.js",
+  "scripts": {
+    "build": "postcss static/css/main.css -o static/css/main.min.css",
+    "build-watch": "npx tailwindcss -i ./static/css/main.css -o ./static/css/main.min.css --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RagAndRoll/Twitter-Clone-Django.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RagAndRoll/Twitter-Clone-Django/issues"
+  },
+  "homepage": "https://github.com/RagAndRoll/Twitter-Clone-Django#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.0.23"
+  },
+  "dependencies": {
+    "autoprefixer": "^10.4.4",
+    "postcss-cli": "^9.1.0"
+  }
+}
