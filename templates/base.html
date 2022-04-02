@@ -2,11 +2,13 @@
 <html lang="en">
 
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Twitter clone by Angel</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{% static 'css/main.min.css' %}">
+
 </head>
 
 <body class="bg-gray-900 h-screen">
@@ -14,7 +16,7 @@
 
 
         <!--left menu-->
-        <div class="w-2/5 text-white h-12 pl-12 py-4 h-auto">
+        <div class="w-2/5 text-white pl-12 py-4 h-auto">
             {% include 'left_menu.html' %}
         </div>
         <!--left menu-->
