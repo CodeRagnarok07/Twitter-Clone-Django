@@ -22,6 +22,7 @@
 
 <!--middle creat tweet-->
 
+{% if request.user.is_authenticated %}
 <form action="" method="post" id="new_tweet">
 
     <div class="flex">
@@ -30,6 +31,7 @@
              src="{{request.user.profile.image}}"
                 alt="" />
         </div>
+
         <div class="flex-1 px-2 pt-2 mt-2">
             {% csrf_token %}
             {{ form.content }}
@@ -106,7 +108,7 @@
     </div>
 
 </form>
-
+{% endif %}
 <hr class="border-gray-800 border-2">
 
 

@@ -14,6 +14,8 @@ from pathlib import Path
 import django_heroku        ## HEROKU DEPLOY
 import dj_database_url      ## HEROKU DEPLOY
 import os
+import sys
+
 
 import environ   #add this
 env = environ.Env(                #add this
@@ -25,6 +27,8 @@ env = environ.Env(                #add this
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))  #add this
+
+# sys.path.insert(0, os.path.join(BASE_DIR, 'apps')) # Apps dir
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -38,6 +42,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -48,6 +53,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'users',
+    'posts',
 ]
 
 LOGIN_REDIRECT_URL = "login/"
