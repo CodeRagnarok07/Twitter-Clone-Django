@@ -1,6 +1,6 @@
 - [x] instalar el tailwind
 - [x] vista de toda la app sin registrarse
-- [ ] dividir apps en user y posts
+- [x] dividir apps en user y posts
 - [ ] registro de usuarios con correo electroino
 - [ ] avisos de registro para realizar acciones
 - 

@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))  #add this
 
-# sys.path.insert(0, os.path.join(BASE_DIR, 'apps')) # Apps dir
+sys.path.insert(0, os.path.join(BASE_DIR, 'apps')) # Apps dir
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
