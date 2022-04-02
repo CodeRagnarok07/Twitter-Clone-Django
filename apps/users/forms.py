@@ -6,16 +6,18 @@ from .models import Profile
 
 
 class UserRegisterForm(UserCreationForm):
-	class Meta:
-		model = User
-		fields = ['first_name', 'username', 'email', 'password1', 'password2']
+    class Meta:
+        model = User
+        fields = ['first_name', 'username', 'email', 'password1', 'password2']
+
 
 class UserUpdateForm(forms.ModelForm):
-	class Meta:
-		model = User
-		fields = ['first_name', 'username']
+    class Meta:
+        model = User
+        fields = ("username", "first_name", "last_name", "email", "password")
+
 
 class ProfileUpdateForm(forms.ModelForm):
-	class Meta:
-		model = Profile
-		fields = ['image', 'bio']
+    class Meta:
+        model = Profile
+        fields = ("bio", "image", "image_header")

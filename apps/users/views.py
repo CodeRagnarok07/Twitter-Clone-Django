@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.contrib.auth.models import User
 from .models import Profile, Relationship
-from .forms import UserRegisterForm
+from .forms import UserRegisterForm, ProfileUpdateForm, UserUpdateForm
 from posts.models import Post
 
 
@@ -33,6 +33,23 @@ def register(request):
 
     context = {'form': form}
     return render(request, "users/register.html", context)
+
+def edit_profile(request):
+    form_user = UserUpdateForm()
+    form_profile = ProfileUpdateForm()
+    if request.method == "POST":
+            form_user = UserUpdateForm(request.POST, instance=request.user)
+            form_profile = ProfileUpdateForm(request.POST, instance=request.user.profile)
+            if form_user.is_valid() and form_profile.is_valid():
+                user = form_user.save()
+                profile = form_profile.save(commit=False)
+                profile.user = user
+                profile.save()
+                login(request, user)
+                return redirect("home")
+
+    context = {'form_user': form_user, 'form_profile': form_profile }
+    return render(request, "users/edit_profile.html", context)
 
 
 # Followings

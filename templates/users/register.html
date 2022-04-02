@@ -1,20 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-    {% load static %} 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-    <link rel="stylesheet" href="{% static 'css/main.min.css' %}">
+{% extends './users_forms.html' %}
 
-</head>
-
-<body class="bg-gray-700 ">
+{% block content %}
     <div class="flex min-h-screen items-center justify-center">
 
 
-        <div class="min-h-1/2 bg-gray-900  border border-gray-900 rounded-2xl">
+        <div class="min-h-1/2 mx-auto bg-gray-900  border border-gray-900 rounded-2xl">
 
             <div
                 class="mx-4 sm:mx-24 md:mx-34 lg:mx-56 flex items-center space-y-4 py-16 font-semibold text-gray-500 flex-col">
@@ -58,6 +48,4 @@
         }
     </script>
 
-</body>
-
-</html>
+{% endblock content %}

@@ -1,14 +1,13 @@
 {% extends './users_forms.html' %}
 
-
 {% block content %}
     <div class="flex min-h-screen items-center justify-center">
 
 
-        <div class="min-h-1/2 bg-gray-900  border border-gray-900 rounded-2xl">
+        <div class="min-h-1/2 mx-auto bg-gray-900  border border-gray-900 rounded-2xl">
 
             <div
-                class="sm:mx-24 md:mx-34 lg:mx-56 mx-auto  flex items-center  py-16 font-semibold text-gray-500 flex-col">
+                class="mx-4 sm:mx-24 md:mx-34 lg:mx-56 flex items-center space-y-4 py-16 font-semibold text-gray-500 flex-col">
                 <svg viewBox="0 0 24 24" class=" h-12 w-12 text-white" fill="currentColor">
                     <g>
                         <path
@@ -17,21 +16,21 @@
                     </g>
                 </svg>
 
-                <h1 class="text-white text-2xl">iniciar sesion en twitter</h1>
+                <h1 class="text-white text-2xl">registrate en twitter</h1>
 
-                <form action="" method="post" id="login_form" class="">
+                <form method="post" id="login_form">
                     {% csrf_token %}
-                    {{ form.as_p }}
-                    <!-- <input class="w-full p-2 bg-gray-900 rounded-md  border border-gray-700 focus:border-blue-700"
-                    placeholder="Correo" type="email" name="correo" id="">
-                <input class="w-full p-2 bg-gray-900 rounded-md border border-gray-700 " placeholder="password*"
-                    type="password" name="correo" id=""> -->
-                    <input class="w-full p-2 bg-gray-50 rounded-md font-bold text-gray-900 border border-gray-700 "
-                        type="submit" id="">
+                    {{ form_user.as_p }}
+                    {{ form_profile.as_p }}
+                    
+                  
+                    <input class="w-full p-2 bg-gray-50 rounded-full font-bold text-gray-900 border border-gray-700 "
+                        type="submit" name="correo" id="">
                 </form>
 
-                <p>no tienes cuenta?
-                    <a class="font-semibold text-sky-700" href="{% url 'register' %}">Registrate</a>
+                <p>already have acount?
+                    <a class="font-semibold text-sky-700" href="{% url 'login' %}">Login</a>
+
                 </p>
             </div>
 
@@ -39,13 +38,11 @@
         </div>
 
     </div>
-
     <script>
         const form_login = document.getElementById("login_form")
         for (var field in form_login) {
-            form_login[field].classList.add("w-full", "p-2", "mt-2", "bg-gray-900", "rounded-full", "border", "border-gray-700", "focus:border-blue-700")
+            form_login[field].classList.add("w-full", "p-2", "bg-gray-900", "rounded-md", "border", "border-gray-700", "focus:border-blue-700")
         }
-
     </script>
 
 {% endblock content %}
