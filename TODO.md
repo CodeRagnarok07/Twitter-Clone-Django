@@ -5,3 +5,6 @@
 - [ ] registro de usuarios con correo electroino
 - [ ] avisos de registro para realizar acciones
 - [ ] Editar perfil
+- [ ] mensajeria
+- [ ] twites faboritos
+- [ ] 

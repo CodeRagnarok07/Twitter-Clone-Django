@@ -12,7 +12,7 @@ def home(request):
         if form.is_valid():
             # aqui si se necesita agregar que usuario hace el post
             post = form.save(commit=False)
-            # post.profile = request.user.profile
+            post.profile = request.user.profile
             post.save()
             return redirect('home')
     else:
