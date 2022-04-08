@@ -4,16 +4,18 @@ from django.contrib.auth import authenticate, login
 # Create your views here.
 
 from django.contrib import messages
-from django.contrib.auth.models import User
-from .models import Profile, Relationship
 from .forms import UserRegisterForm, ProfileUpdateForm, UserUpdateForm
+
+
 from posts.models import Post
+from .models import CustomUser, Relationship
+from django.contrib.auth.models import User
 
 
 
 
 def view_user(request, profile):
-    current_profile = get_object_or_404(Profile, user__username=profile)
+    current_profile = get_object_or_404(CustomUser, user__username=profile)
     posts = Post.objects.all().filter(profile=current_profile)
 
     ctx = {"current_profile": current_profile, "posts": posts}
@@ -26,7 +28,7 @@ def register(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            Profile.objects.create(user=user)
+            CustomUser.objects.create(user=user)
             return redirect('home')
     else:
         form = UserRegisterForm()
@@ -55,14 +57,14 @@ def edit_profile(request):
 # Followings
 def follow_user(request, user_id):                      
 	current_user = request.user            
-	to_user = User.objects.get(id=user_id)   
+	to_user = CustomUser.objects.get(id=user_id)   
 	rel = Relationship(from_user=current_user, to_user=to_user) 
 	rel.save()                                      
 	return redirect('home')
 
 def unfollow_user(request, user_id):
 	current_user = request.user
-	to_user = User.objects.get(id=user_id)
+	to_user = CustomUser.objects.get(id=user_id)
 	rel = Relationship.objects.get(from_user=current_user, to_user=to_user)
 	rel.delete()
 	return redirect('home')

@@ -114,6 +114,7 @@
 
 <!--first tweet start-->
 
+{% if posts %}
 {% for i in posts %}
 <div>
 
@@ -218,6 +219,7 @@
     <hr class="border-gray-600">
 </div>
 {% endfor %}
+{% endif %}
 
 <script>
     const form_new_tweet = document.querySelector("#new_tweet")

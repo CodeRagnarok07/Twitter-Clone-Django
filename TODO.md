@@ -1,10 +1,11 @@
 - [x] instalar el tailwind
 - [x] vista de toda la app sin registrarse
 - [x] dividir apps en user y posts
+- [ ] Editar perfil
+- [ ] Perfil personalizado con login de correo
 - [ ] Corregir los followers 
 - [ ] registro de usuarios con correo electroino
 - [ ] avisos de registro para realizar acciones
-- [ ] Editar perfil
 - [ ] mensajeria
-- [ ] twites faboritos
-- [ ] 
+- [ ] tweets faboritos
+- [ ] hacer crud en los tweets
