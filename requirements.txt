@@ -1,0 +1,10 @@
+autopep8
+dj-database-url
+Django
+django-environ
+django-heroku
+gunicorn
+psycopg2
+psycopg2-binary
+
+
