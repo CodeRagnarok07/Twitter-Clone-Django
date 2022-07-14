@@ -136,18 +136,18 @@
     {% if request.user.profile != i%}
     <div class="flex flex-shrink-0">
         <div class="flex-1 ">
-            <a href="{% url 'view_user' i.user %}">
+            <a href="{% url 'view_user' i %}">
                 <div class="flex items-center w-48">
                     <div>
                         <img class="inline-block h-10 w-10 rounded-full ml-4 mt-2" src="{{i.image}}" alt="" />
                     </div>
                     <div class="ml-3 mt-3">
                         <p class="text-base leading-6 font-medium text-white">
-                            {{i.user.first_name}}
+                            {{i.first_name}}
                         </p>
                         <p
                             class="text-sm leading-5 font-medium text-gray-400 group-hover:text-gray-300 transition ease-in-out duration-150">
-                            @{{i.user}}
+                            @{{i}}
                         </p>
                     </div>
                 </div>
@@ -157,9 +157,9 @@
 
         {% if request.user.is_authenticated %}
         <!-- Si el usuario esta autentificado -->
-            {% if i.user not in request.user.profile.following %}
+            {% if i not in request.user.profile.following %}
             <div class="flex-1 px-4 py-2 m-2">
-                <a href="{% url 'follow' i.user.id %}" class=" float-right">
+                <a href="{% url 'follow' i.id %}" class=" float-right">
                     <button
                         class="bg-transparent hover:bg-gray-500 text-white font-semibold hover:text-white py-2 px-4 border border-white hover:border-transparent rounded-full">
                         follow
@@ -168,7 +168,7 @@
             </div>
             {% else %}
             <div class="flex-1 px-4 py-2 m-2">
-                <a href="{% url 'unfollow' i.user.id %}" class=" float-right">
+                <a href="{% url 'unfollow' i.id %}" class=" float-right">
                     <button
                         class="bg-transparent hover:bg-gray-500 text-white font-semibold hover:text-white py-2 px-4 border border-white hover:border-transparent rounded-full">
                         Unfollow

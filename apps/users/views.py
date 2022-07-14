@@ -4,19 +4,20 @@ from django.contrib.auth import authenticate, login
 # Create your views here.
 
 from django.contrib import messages
-from django.contrib.auth.models import User
-from .models import Profile, Relationship
 from .forms import UserRegisterForm, ProfileUpdateForm, UserUpdateForm
+
+
 from posts.models import Post
+from .models import User, Relationship
 
 
 
 
-def view_user(request, profile):
-    current_profile = get_object_or_404(Profile, user__username=profile)
-    posts = Post.objects.all().filter(profile=current_profile)
+def view_user(request, user):
+    current_user = get_object_or_404(User, username=user)
+    posts = Post.objects.all().filter(user=current_user)
 
-    ctx = {"current_profile": current_profile, "posts": posts}
+    ctx = {"current_user": current_user, "posts": posts}
     return render(request, 'users/view_user.html', ctx)
 
 
@@ -26,7 +27,6 @@ def register(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            Profile.objects.create(user=user)
             return redirect('home')
     else:
         form = UserRegisterForm()
@@ -35,20 +35,18 @@ def register(request):
     return render(request, "users/register.html", context)
 
 def edit_profile(request):
-    form_user = UserUpdateForm()
     form_profile = ProfileUpdateForm()
     if request.method == "POST":
-            form_user = UserUpdateForm(request.POST, instance=request.user)
-            form_profile = ProfileUpdateForm(request.POST, instance=request.user.profile)
-            if form_user.is_valid() and form_profile.is_valid():
-                user = form_user.save()
-                profile = form_profile.save(commit=False)
-                profile.user = user
-                profile.save()
-                login(request, user)
-                return redirect("home")
+        form_profile = ProfileUpdateForm(request.POST, instance=request.user)
+        if form_profile.is_valid():
+            user = form_profile.save()
+            user.save()
+            login(request, user)
+            return redirect("home")
+        else:
+            print("ta jodido")
 
-    context = {'form_user': form_user, 'form_profile': form_profile }
+    context = {'form_profile': form_profile }
     return render(request, "users/edit_profile.html", context)
 
 
