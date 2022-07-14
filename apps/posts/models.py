@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
-from users.models import CustomUser
+from django.contrib.auth.models import User
+
 # Create your models here.
 
 
@@ -8,7 +9,7 @@ from users.models import CustomUser
 class Post(models.Model):
 	timestamp = models.DateTimeField(default=timezone.now)
 	content = models.TextField()
-	user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='posts')
+	user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
 
 	class Meta:
 		ordering = ['-timestamp']

@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.contrib.auth.models import AbstractUser, BaseUserManager
+from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin
 from django.utils.translation import gettext_lazy as _
 # Create your models here.
 
@@ -32,7 +32,7 @@ class CustomUserManager(BaseUserManager):
             raise ValueError("Superuser must have is_superuser=True.")
         return self._create_user(email, password, **extra_fields)
 
-class CustomUser(AbstractUser):
+class User(AbstractBaseUser, PermissionsMixin):
 	username = None
 	email = models.EmailField(_("email address"), unique=True)
 
@@ -47,8 +47,11 @@ class CustomUser(AbstractUser):
 	objects = CustomUserManager()
 
 
+
 	def __str__(self):
 		return f'{self.email}'
+
+
     # campos foraneos
     # user.posts
 
@@ -67,8 +70,8 @@ class CustomUser(AbstractUser):
 
 
 class Relationship(models.Model):
-	from_user = models.ForeignKey(CustomUser, related_name='following', on_delete=models.CASCADE) 
-	to_user = models.ForeignKey(CustomUser, related_name='follower', on_delete=models.CASCADE)
+	from_user = models.ForeignKey(User, related_name='following', on_delete=models.CASCADE) 
+	to_user = models.ForeignKey(User, related_name='follower', on_delete=models.CASCADE)
 
 	def __str__(self):
 		return f'{self.from_user} to {self.to_user}'
